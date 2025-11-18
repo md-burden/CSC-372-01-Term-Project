@@ -1,0 +1,57 @@
+@import "./variables.css";
+
+.long-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-light);
+  border-radius: 8px;
+  padding: 1rem 0 1rem 0;
+  width: calc(75% - 10vw);
+  box-shadow: var(--shadow);
+}
+
+.long-card img {
+  max-height: 40px;
+  max-width: auto;
+  border-radius: 8px;
+  margin-right: auto;
+  margin-left: 1rem;
+}
+
+.long-card #content {
+  display: flex;
+  flex-direction: row;
+  gap: var(--margin-xs);
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: 1rem;
+  flex-grow: 1;
+}
+
+.long-card #owned-checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--margin-xs);
+}
+
+.long-card #owned-checkbox [type="checkbox"] {
+  margin: 0;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  transform: scale(1.5);
+  vertical-align: middle;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  background-color: var(--bg);
+}
+
+.long-card button {
+  margin-right: 1rem;
+  justify-self: center;
+}

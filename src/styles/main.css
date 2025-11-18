@@ -1,0 +1,5 @@
+@import './variables.css';
+
+.app-content {
+    margin: var(--main-gutter);
+}
