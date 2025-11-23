@@ -1,0 +1,21 @@
+.mounts-minions-page {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 40px 0px;
+  margin-top: var(--margin-xl);
+  margin-bottom: var(--margin-xl);
+  justify-items: center;
+}
+
+#filter-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  width: calc(75% - 10vw);
+  gap: var(--margin-m);
+  font-size: var(--font-lg);
+  font-weight: 500;
+  gap: 8px;
+  padding-left: 2rem;
+}

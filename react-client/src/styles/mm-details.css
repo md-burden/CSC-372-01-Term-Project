@@ -1,0 +1,134 @@
+@import "./variables.css";
+
+/* Popup Container */
+.popup-content {
+  background-color: var(--bg-light);
+  margin: auto;
+  padding: 0;
+  width: 50%;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Modal Styles */
+.modal {
+  background-color: var(--bg-light);
+  color: var(--text);
+  border: none;
+  border-radius: 8px;
+}
+
+.modal > .header {
+  width: 100%;
+  background-color: var(--bg-dark);
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+}
+
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+
+.modal > .actions {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: var(--bg);
+  border-radius: 18px;
+  border: 1px solid var(--bg-dark);
+}
+
+/* Details Section */
+.details-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  text-align: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.details-section img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.details-section strong {
+  font-size: 1rem;
+}
+
+.details-section p {
+  font-weight: 400;
+}
+
+/* Info Grid */
+.info-grid {
+  width: 100%;
+  text-align: start;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.info-item p {
+  color: var(--text-muted);
+}
+
+/* Description and Tooltip */
+.description,
+.tooltip {
+  width: 100%;
+  text-align: start;
+  padding: 0 20px;
+}
+
+/* Goal Input Fields */
+#goal-name-input,
+#goal-notes-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: start;
+  padding: 0 10px;
+}
+
+#goal-name-input label,
+#goal-notes-input label {
+  margin: 0 10px 8px 10px;
+  font-weight: 600;
+}
+
+#goal-name-input input,
+#goal-notes-input textarea {
+  color: var(--text);
+  margin: 0 10px;
+  padding: 10px;
+  border: 1px solid var(--bg-dark);
+  border-radius: 4px;
+  background-color: var(--bg);
+  resize: vertical;
+  min-height: 45px;
+  max-height: 150px;
+  width: calc(100% - 20px);
+  box-sizing: border-box;
+}

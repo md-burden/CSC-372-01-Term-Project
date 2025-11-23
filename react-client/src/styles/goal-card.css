@@ -1,0 +1,210 @@
+@import "./variables.css";
+
+/* Goal Card Container */
+.goal-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--margin-xs);
+  border-radius: 8px;
+  width: calc(75% - 10vw);
+  background-color: var(--bg-light);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  padding: 0;
+  margin-top: var(--margin-m);
+}
+
+/* Goal Title Section */
+#goal-title {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  width: 100%;
+  background-color: var(--bg-dark);
+  border-radius: 8px 8px 0 0;
+  padding: var(--margin-xxs);
+  font-size: var(--font-3xl);
+  font-weight: 600;
+}
+
+#delete-button {
+  background-color: hsl(12, 69%, 47%);
+  border: none;
+}
+
+#goal-title p {
+  font-size: var(--font-lg);
+}
+
+#goal-title input {
+  color: var(--text);
+  margin: 10px auto;
+  padding: 10px;
+  width: 50%;
+  border: 1px solid var(--bg-dark);
+  border-radius: 4px;
+  background-color: var(--bg);
+  box-sizing: border-box;
+  font-size: var(--font-lg);
+  font-weight: 600;
+}
+
+#complete {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-16);
+  margin-left: calc(var(--space-16) * -1);
+  margin-right: 10px;
+}
+
+#complete button {
+  padding: var(--margin-s);
+  width: 150px;
+  background-color: hsl(120, 60%, 35%);
+  margin-left: calc(var(--space-40) * -1);
+}
+
+#delete button{
+  padding: var(--margin-s);
+  background-color: hsl(12, 69%, 47%);
+}
+
+/* Goal Content Section */
+#goal-content {
+  display: flex;
+  flex-direction: row;
+  gap: var(--margin-xxs);
+  flex: 1;
+}
+
+/* Details Section */
+#details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-l);
+  padding: var(--margin-medium);
+  flex: 1;
+}
+
+#description {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--margin-medium);
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-xxs);
+}
+
+.detail-item strong {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.detail-item p {
+  font-size: var(--font-l);
+  font-weight: 400;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.detail-item a {
+  font-size: var(--font-base);
+  font-weight: 400;
+  color: var(--link-color);
+  margin: 0;
+  text-decoration: underline;
+  width: 300px;
+}
+
+.detail-item a:hover {
+  color: var(--link-highlight);
+}
+
+.detail-item a::selection {
+  background-color: var(--link-color);
+  color: var(--bg-light);
+}
+
+/* Notes Section */
+#notes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 var(--margin-medium) 0 var(--margin-medium);
+}
+
+#notes strong {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--text);
+}
+
+#notes p {
+  width: 100%;
+  min-height: 80px;
+  max-height: 150px;
+  border-radius: 4px;
+  color: var(--text-muted);
+  font-size: var(--font-base);
+  font-weight: 400;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+#notes-input{
+  min-height: 80px;
+  max-height: 150px;
+  padding: 10px;
+  border: 1px solid var(--bg-dark);
+  border-radius: 4px;
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: var(--font-base);
+  font-weight: 400;
+  box-sizing: border-box;
+  resize: vertical;
+  margin: 0 1rem;
+}
+
+/* Image Section */
+#image {
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-medium);
+  align-items: center;
+  padding: var(--margin-medium);
+}
+
+#image img {
+  max-width: 300px;
+  height: auto;
+}
+
+/* Action Buttons */
+#actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--margin-s);
+  padding: var(--margin-medium);
+}
+
+#actions button {
+  padding: var(--margin-s);
+  font-size: var(--font-base);
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#actions button:hover {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
