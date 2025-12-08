@@ -1,6 +1,7 @@
 "use strict";
 const express = require("express");
 const app = express();
+const path = require('path');
 
 // CORS must come early, before other middleware
 const cors = require("cors");
