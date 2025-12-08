@@ -5,7 +5,7 @@ import { useState } from "react";
 import "../../styles/profile-page.css";
 
 function ProfilePage() {
-  const { user, logout, selectedCharacterId, setSelectedCharacterId } =
+  const { user, logout } =
     useAuth();
   const navigate = useNavigate();
   const [characterIds, setCharacterIds] = useState(user.characterIds || []);
@@ -14,32 +14,9 @@ function ProfilePage() {
   const handleLogout = async () => {
     try {
       await logout(); // Call the logout function from context
-      navigate("/login"); // Redirect to login page after logout completes
+      navigate("/"); // Redirect to login page after logout completes
     } catch (error) {
       console.error("Failed to log out:", error);
-    }
-  };
-
-  const handleCharacterIdSelect = (characterId) => {
-    setSelectedCharacterId(characterId);
-    console.log("Character ID Selected:", characterId);
-  };
-
-  const handleCharacterIdInput = (event) => {
-    const value = event.target.value;
-    setSelectedCharacterId(value);
-  };
-
-  const handleAddCharacterId = (event) => {
-    if (event.key === "Enter") {
-      const id = selectedCharacterId.trim();
-      if (id && !characterIds.includes(parseInt(id))) {
-        const numericId = parseInt(id);
-        if (!isNaN(numericId)) {
-          setCharacterIds([...characterIds, numericId]);
-          console.log("Character ID Added:", numericId);
-        }
-      }
     }
   };
 

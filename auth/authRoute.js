@@ -28,7 +28,7 @@ router.get(
   passport.authenticate("google", {
     scope: ['profile', 'email'],
     keepSessionInfo: true,
-    failureRedirect: `${CLIENT_BASE_URL}/login?error=true`, // Redirect to login on failure
+    failureRedirect: `${CLIENT_BASE_URL}/?error=true`, // Redirect to login on failure
   }),
   (req, res) => {
     // === SUCCESSFUL AUTHENTICATION ===

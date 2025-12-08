@@ -10,7 +10,7 @@ function LoginPage() {
 
   const location = useLocation();
 
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/home";
   console.log("LoginPage: from =", from);
   const BACKEND_URL =
     import.meta.env.VITE_BACKEND_API_BASE_URL || "http://localhost:3000";

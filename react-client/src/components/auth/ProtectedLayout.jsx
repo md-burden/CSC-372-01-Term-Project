@@ -14,7 +14,7 @@ function ProtectedLayout() {
   // 2. Handle the 'not authenticated' state
   // After loading, if still not authenticated, redirect
   if (!isAuthenticated) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
 
   // 3. Handle the 'authenticated' state

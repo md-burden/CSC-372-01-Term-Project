@@ -12,7 +12,7 @@ function BannerComponent() {
         }
     } 
 
-    const goals =() => nav('/');
+    const goals =() => nav('/home');
     const mounts =() => nav('/mounts');
     const minions =() => nav('/minions');
     const profile =() => nav('/profile');

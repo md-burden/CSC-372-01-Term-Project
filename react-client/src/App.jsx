@@ -38,9 +38,9 @@ function AppContent() {
       <BannerComponent />
       <div className="app-content">
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<LoginPage />} />
           <Route element={<ProtectedLayout />}>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
             <Route path="/mounts" element={<MountsPage />} />
             <Route path="/minions" element={<MinionsPage />} />
             <Route path="/profile" element={<ProfilePage />} />
