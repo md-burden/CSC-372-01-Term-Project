@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:frontend:force": "npm --prefix react-client install --include=dev && npm --prefix react-client run build"
+  },
   "dependencies": {
     "accepts": "^2.0.0",
     "acorn": "^8.15.0",
@@ -197,10 +201,6 @@
     "yocto-queue": "^0.1.0",
     "zod": "^4.1.12",
     "zod-validation-error": "^4.0.2"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
   },
   "repository": {
     "type": "git",

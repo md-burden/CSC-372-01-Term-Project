@@ -13,10 +13,10 @@ class GoalService {
 
   createGoal(googleId, goalName, notes, creatureId, creatureType) {
     const goal = {
-      goalName: goalName,
+      goal_name: goalName,
       notes: notes,
-      creatureId: creatureId,
-      creatureType: creatureType,
+      creature_id: creatureId,
+      creature_type: creatureType,
     };
     return axios.post(`${GOALS_API_BASE_URL}/${googleId}`, goal);
   }
@@ -31,7 +31,7 @@ class GoalService {
 
   updateGoal(goalId, goalName, notes) {
     const updatedGoal = {
-      goalName: goalName,
+      goal_name: goalName,
       notes: notes,
     };
     return axios.put(`${GOALS_API_BASE_URL}/${goalId}`, updatedGoal);

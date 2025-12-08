@@ -17,7 +17,7 @@ function HomePage() {
         console.log("Fetching goals for user:", user);
         setLoading(true);
         const data = await GoalService.getIncompleteGoalsByGoogleId(
-          user.googleId
+          user.google_id
         );
         setGoals(data.data || []);
       } catch (err) {
@@ -48,7 +48,7 @@ function HomePage() {
           <GoalCardComponent
             key={index}
             goal={goal}
-            mountId={goal.creatureId}
+            creatureId={goal.creature_id}
           />
         ))}
       </div>

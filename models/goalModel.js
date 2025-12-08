@@ -1,9 +1,8 @@
-const { ca } = require('zod/v4/locales');
 const pool = require('./db');
 
 const getAllByGoogleId = async (googleId) => {
   try {
-    const queryText = 'SELECT * FROM goals WHERE "googleId" = $1';
+    const queryText = 'SELECT * FROM goals WHERE "google_id" = $1';
     const values = [googleId];
     const results = await pool.query(queryText, values);
     return results.rows;
@@ -14,7 +13,7 @@ const getAllByGoogleId = async (googleId) => {
 
 const getIncompleteGoalsByGoogleId = async (googleId) => {
   try {
-    const queryText = 'SELECT * FROM goals WHERE "googleId" = $1 AND complete = FALSE';
+    const queryText = 'SELECT * FROM goals WHERE "google_id" = $1 AND complete = FALSE';
     const values = [googleId];
     const results = await pool.query(queryText, values);
     return results.rows;
@@ -25,8 +24,8 @@ const getIncompleteGoalsByGoogleId = async (googleId) => {
 
 const createGoal = async (googleId, goal) => {
   try {
-    const queryText = `INSERT INTO goals ("googleId", "goalName", "creatureType", "creatureId", "notes") VALUES ($1, $2, $3, $4, $5) RETURNING *`;
-    const values = [googleId, goal.goalName, goal.creatureType, goal.creatureId, goal.notes];
+    const queryText = `INSERT INTO goals ("google_id", "goal_name", "creature_type", "creature_id", "notes") VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+    const values = [googleId, goal.goal_name, goal.creature_type, goal.creature_id, goal.notes];
     const result = await pool.query(queryText, values);
     return result.rows[0];
   } catch (error) {

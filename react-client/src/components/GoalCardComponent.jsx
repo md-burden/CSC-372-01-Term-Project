@@ -3,6 +3,8 @@ import "../styles/goal-card.css";
 import { useState, useEffect } from "react";
 import MountsService from "../services/MountsService";
 import GoalService from "../services/GoalService";
+import OwnedMountsService from "../services/OwnedMountsService";
+import OwnedMinionsService from "../services/OwnedMinionsService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCouch,
@@ -11,8 +13,9 @@ import {
   faCircleCheck,
   faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import MinionsService from "../services/MinionsService";
 
-function GoalCardComponent({ goal, mountId }) {
+function GoalCardComponent({ goal, creatureId }) {
   const [creature, setCreature] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -26,11 +29,19 @@ function GoalCardComponent({ goal, mountId }) {
 
   useEffect(() => {
     const fetchCreature = async () => {
-      if (!mountId) return;
+      if (!creatureId) {
+        setLoading(false);
+        return;
+      }
 
       try {
         setLoading(true);
-        const response = await MountsService.getMountById(mountId);
+        let response;
+        if (goal.creature_type === "mount") {
+          response = await MountsService.getMountById(creatureId);
+        } else {
+          response = await MinionsService.getMinionById(creatureId);
+        }
         setCreature(response.data);
       } catch (err) {
         setError(err.message);
@@ -40,7 +51,7 @@ function GoalCardComponent({ goal, mountId }) {
     };
 
     fetchCreature();
-  }, [mountId]);
+  }, [creatureId, goal.creature_type]);
 
   const saveChanges = () => {
     const updatedGoalName = document.getElementById("goal-title-input").value;
@@ -124,10 +135,10 @@ function GoalCardComponent({ goal, mountId }) {
   function headerTitle() {
     if (editing) {
       return (
-        <input type="text" defaultValue={goal.goalName} id="goal-title-input" />
+        <input type="text" defaultValue={goal.goal_name} id="goal-title-input" />
       );
     } else {
-      return <h2 id="goal-title">{goal.goalName}</h2>;
+      return <h2 id="goal-title">{goal.goal_name}</h2>;
     }
   }
 
@@ -138,10 +149,21 @@ function GoalCardComponent({ goal, mountId }) {
       window.location.reload();
     };
 
-    const onComplete = () => {
-      GoalService.completeGoal(goal.id);
-      setEditing(false);
-      window.location.reload();
+    const onComplete = async () => {
+      try {
+        if(goal.creature_type === "mount") {
+          await OwnedMountsService.addToOwnedMounts(goal.google_id, goal.creature_id);
+        }
+        else {
+          await OwnedMinionsService.addToOwnedMinions(goal.google_id, goal.creature_id);
+        }
+        await GoalService.completeGoal(goal.id);
+        setEditing(false);
+        window.location.reload();
+      } catch (err) {
+        console.error("Error completing goal:", err);
+        alert("Failed to complete goal. Please try again.");
+      }
     };
 
     if (editing) {

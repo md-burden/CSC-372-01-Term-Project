@@ -41,7 +41,7 @@ function MountsPage() {
             key={index}
             type={TYPE.MOUNT}
             data={mount}
-            googleId={user?.googleId}
+            googleId={user?.google_id}
             navigate={navigate}
           />
         ))}

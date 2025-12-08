@@ -43,12 +43,7 @@ router.get(
 
 router.get('/me', async (req, res) => {
   if (req.isAuthenticated()) {
-    const user = await userModel.getUserById(req.user.googleId);
-    if (user) {
-      res.json(user);
-    } else {
-      res.status(404).json({ message: 'User not found' });
-    }
+    res.json(req.user);
   } else {
     res.status(401).json({ message: 'Not authenticated' });
   }

@@ -1,14 +1,14 @@
 const pool = require('./db');
 
 async function getUserById(googleId) {
-    const queryText = 'SELECT * FROM users WHERE "googleId" = $1';
+    const queryText = 'SELECT * FROM users WHERE "google_id" = $1';
     const values = [googleId];
     const result = await pool.query(queryText, values);
     return result.rows[0];
 }
 
 async function createNewUser([googleId, firstName, lastName, email, displayName, characterIds]) {
-    let queryText = 'INSERT INTO users ("googleId", "firstName", "lastName", "email", "characterIds", "displayName") VALUES ($1, $2, $3, $4, $5, $6) RETURNING *';
+    let queryText = 'INSERT INTO users ("google_id", "first_name", "last_name", "email", "character_ids", "display_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING *';
     let values = [googleId, firstName, lastName, email, characterIds, displayName];
     const result = await pool.query(queryText, values);
     return result.rows[0];

@@ -27,7 +27,7 @@ class MountMinionCardComponent extends React.Component {
     const chair = <FontAwesomeIcon icon={faCouch} size={"lg"} />;
     const mountain = <FontAwesomeIcon icon={faMountain} size={"lg"} />;
     const plane = <FontAwesomeIcon icon={faPlane} size={"lg"} />;
-    const { data, googleId, navigate, type } = this.props;
+    const { data, googleId, navigate, type, isCollectionPage } = this.props;
 
     return (
       <div className="mount-minion-card">
@@ -43,14 +43,15 @@ class MountMinionCardComponent extends React.Component {
           type={type} 
           data={data} 
           googleId={googleId} 
-          navigate={navigate} 
+          navigate={navigate}
+          isCollectionPage={isCollectionPage}
         />
       </div>
     );
   }
 
   minionCard() {
-    const { data, googleId, navigate, type } = this.props;
+    const { data, googleId, navigate, type, isCollectionPage } = this.props;
     
     return (
       <div className="mount-minion-card">
@@ -60,7 +61,8 @@ class MountMinionCardComponent extends React.Component {
           type={type} 
           data={data} 
           googleId={googleId} 
-          navigate={navigate} 
+          navigate={navigate}
+          isCollectionPage={isCollectionPage}
         />
       </div>
     );

@@ -17,21 +17,21 @@ passport.use(new GoogleStrategy({
     lastName: profile.name.familyName,
     email: profile.emails[0].value
   }
-  const user = await userModel.getUserById(profile.id);
+  let user = await userModel.getUserById(profile.id);
   if (!user) {
-    userModel.createNewUser(Object.values(newUser));
+    user = await userModel.createNewUser(Object.values(newUser));
   }
-  return done(null, profile);
+  return done(null, user);
 }));
 
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user.google_id);
 });
 
-passport.deserializeUser(async (id, done) => {
+passport.deserializeUser(async (googleId, done) => {
   try {
-    const user = await userModel.getUserById(id); // Fetch from DB
+    const user = await userModel.getUserById(googleId); // Fetch from DB
     done(null, user); // Pass the full user object
   } catch (error) {
     done(error);

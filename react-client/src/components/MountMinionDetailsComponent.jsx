@@ -3,6 +3,8 @@ import "../styles/mm-details.css";
 import React from "react";
 import TYPE from "../../config/enum.js";
 import GoalService from "../services/GoalService.jsx";
+import OwnedMountsService from "../services/OwnedMountsService.jsx";
+import OwnedMinionsService from "../services/OwnedMinionsService.jsx";
 import Popup from "reactjs-popup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -24,6 +26,24 @@ class MountMinionDetailsComponent extends React.Component {
   }
 
   async submitGoal(closeModal) {
+    let alreadyOwned;
+    if(this.props.type === TYPE.MOUNT){
+      alreadyOwned = await OwnedMountsService.checkOwnedMount(
+        this.props.googleId,
+        this.props.data.id
+      );
+    } else {
+      alreadyOwned = await OwnedMinionsService.checkOwnedMinion(
+        this.props.googleId,
+        this.props.data.id
+      );
+    }
+
+    if(alreadyOwned.data.owned){
+      alert("You already own this item!");
+      return;
+    }
+
     if (!this.state.goalName || this.state.goalName.trim() === "") {
       alert("Goal name is required");
       return;
@@ -64,11 +84,7 @@ class MountMinionDetailsComponent extends React.Component {
     }
 
     return (
-      <Popup
-        trigger={<button className="button">Details</button>}
-        modal
-        nested
-      >
+      <Popup trigger={<button className="button">Details</button>} modal nested>
         {(close) => (
           <div className="modal">
             <button className="close" onClick={close}>
@@ -104,9 +120,11 @@ class MountMinionDetailsComponent extends React.Component {
 
     return (
       <div className="actions">
-        <button onClick={() => this.setState({ createGoal: true })}>
-          Create Goal
-        </button>
+        {!this.props.isCollectionPage && (
+          <button onClick={() => this.setState({ createGoal: true })}>
+            Create Goal
+          </button>
+        )}
         <button className="button" onClick={close}>
           Close
         </button>
@@ -146,8 +164,7 @@ class MountMinionDetailsComponent extends React.Component {
           <div className="info-item">
             <strong>Tradable</strong>
             <p>
-              {data.tradable ? check : cross}{" "}
-              {data.tradable ? "Yes" : "No"}
+              {data.tradable ? check : cross} {data.tradable ? "Yes" : "No"}
             </p>
           </div>
           <div className="info-item">
@@ -173,7 +190,84 @@ class MountMinionDetailsComponent extends React.Component {
   }
 
   renderMinionDetails() {
-    return <div>Minion details coming soon...</div>;
+    const { data } = this.props;
+    const chair = <FontAwesomeIcon icon={faCouch} size={"lg"} />;
+    const mountain = <FontAwesomeIcon icon={faMountain} size={"lg"} />;
+    const plane = <FontAwesomeIcon icon={faPlane} size={"lg"} />;
+    const check = <FontAwesomeIcon icon={faCircleCheck} size={"lg"} />;
+    const cross = <FontAwesomeIcon icon={faCircleXmark} size={"lg"} />;
+
+
+    return (
+      <div className="details-section">
+        <img src={data.image} alt={data.name} />
+        <div className="info-grid">
+          <div className="info-item">
+            <strong>Behavior</strong>
+            <p>{data.behavior.name}</p>
+          </div>
+          <div className="info-item">
+            <strong>Patch</strong>
+            <p>{data.patch}</p>
+          </div>
+          <div className="info-item">
+            <strong>Tradable</strong>
+            <p>
+              {data.tradable ? check : cross} {data.tradable ? "Yes" : "No"}
+            </p>
+          </div>
+          <div className="info-item">
+            <strong>Owned By</strong>
+            <p>{data.owned}</p>
+          </div>
+          <div className="info-item">
+            <strong>Source</strong>
+            <p>{data.sources?.[0]?.text || "N/A"}</p>
+          </div>
+          <div className="info-item">
+            <strong>HP</strong>
+            <p>{data.verminion?.hp || "N/A"}</p>
+          </div>
+          <div className="info-item">
+            <strong>Attack</strong>
+            <p>{data.verminion?.attack || "N/A"}</p>
+          </div>
+          <div className="info-item">
+            <strong>Defense</strong>
+            <p>{data.verminion?.defense || "N/A"}</p>
+          </div>
+          <div className="info-item">
+            <strong>Cost</strong>
+            <p>{data.verminion?.cost || "N/A"}</p>
+          </div>
+          <div className="info-item">
+            <strong>Speed</strong>
+            <p>{data.verminion?.speed || "N/A"}</p>
+          </div>
+          <div className="info-item">
+            <strong>Area Attack</strong>
+            <p>{data.verminion?.area_attack ? check : cross || "N/A"} {data.tradable ? "Yes" : "No" || ""}</p>
+          </div>
+          <div className="info-item">
+            <strong>Skill</strong>
+            <p>{data.verminion?.skill || "Skill Name Missing"}</p>
+          </div>
+          <div className="info-item">
+            <strong>Skill Description</strong>
+            <p>{data.verminion?.skill_description || "Skill Description Missing"}</p>
+          </div>
+        </div>
+        <div className="description">
+          <strong>Description</strong>
+          <p>{data.enhanced_description}</p>
+        </div>
+        <div className="tooltip">
+          <strong>Tooltip</strong>
+          <p>{data.tooltip}</p>
+        </div>
+        {this.renderGoalInputs()}
+      </div>
+    );
   }
 
   renderGoalInputs() {
