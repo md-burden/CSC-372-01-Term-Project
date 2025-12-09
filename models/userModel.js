@@ -7,9 +7,9 @@ async function getUserById(googleId) {
     return result.rows[0];
 }
 
-async function createNewUser([googleId, firstName, lastName, email, displayName, characterIds]) {
-    let queryText = 'INSERT INTO users ("google_id", "first_name", "last_name", "email", "character_ids", "display_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING *';
-    let values = [googleId, firstName, lastName, email, characterIds, displayName];
+async function createNewUser([googleId, firstName, lastName, email, displayName]) {
+    let queryText = 'INSERT INTO users ("google_id", "first_name", "last_name", "email", "display_name") VALUES ($1, $2, $3, $4, $5) RETURNING *';
+    let values = [googleId, firstName, lastName, email, displayName];
     const result = await pool.query(queryText, values);
     return result.rows[0];
 }
