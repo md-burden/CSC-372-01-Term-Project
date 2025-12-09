@@ -5,3 +5,15 @@
   min-height: 100vh;
   text-align: center;
 }
+
+#banner {
+  padding-top: 20px;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}

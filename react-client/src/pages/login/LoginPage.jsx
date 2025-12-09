@@ -27,13 +27,7 @@ function LoginPage() {
           </h2>
         </div>
         <div id="login-form">
-          <h2>Login</h2>
           <p>You must log in to continue.</p>
-
-          {/* regular <a> tag, not a React Router <Link>.
-        We need a full-page navigation to leave our React app
-        and go to the backend/Google.
-      */}
           <a href={googleLoginUrl}>Login with Google</a>
         </div>
       </div>

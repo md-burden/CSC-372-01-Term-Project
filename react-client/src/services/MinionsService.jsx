@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const MINIONS_API_BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL + "/api/minions" || "http://localhost:3000/api/minions";
+const MINIONS_API_BASE_URL = (import.meta.env.VITE_BACKEND_API_BASE_URL || "http://localhost:3000") + "/api/minions";
 
 class MinionsService {
     getAllMinion() {

@@ -6,6 +6,7 @@
   margin: auto;
   padding: 0;
   width: 50%;
+  max-height: 90vh;
   border: none;
   border-radius: 8px;
 }
@@ -16,6 +17,9 @@
   color: var(--text);
   border: none;
   border-radius: 8px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal > .header {
@@ -25,11 +29,15 @@
   text-align: center;
   padding: 10px;
   border-radius: 8px 8px 0 0;
+  flex-shrink: 0;
 }
 
 .modal > .content {
   width: 100%;
   padding: 10px 5px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
 }
 
 .modal > .actions {
@@ -40,7 +48,8 @@
   margin: auto;
   text-align: center;
   justify-content: center;
-  gap: 20px;
+  gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .modal > .close {
@@ -64,16 +73,16 @@
   margin-bottom: 15px;
   text-align: center;
   align-items: center;
-  gap: 20px;
+  gap: 0.25rem;
 }
 
 .details-section img {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .details-section strong {
-  font-size: 0.75rem;
+  font-size: 1rem;
 }
 
 .details-section p {
@@ -86,7 +95,7 @@
   text-align: start;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  gap: 0.25rem;
   padding: 0 20px;
 }
 
@@ -99,6 +108,7 @@
 .tooltip {
   width: 100%;
   text-align: start;
+  font-size: 1rem;
   padding: 0 20px;
 }
 
