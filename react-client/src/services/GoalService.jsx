@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const GOALS_API_BASE_URL = "http://localhost:3000/api/goals";
+const GOALS_API_BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL + "/api/goals" || "http://localhost:3000/api/goals";
 
 class GoalService {
   getAllGoalsByGoogleId(googleId) {
